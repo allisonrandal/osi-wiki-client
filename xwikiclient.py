@@ -43,3 +43,9 @@ class Client:
         for details in result: 
             pages.append(details['name'])
         return pages
+
+    def page(self, space, page):
+        path = ['spaces', space, 'pages', page]
+        data = {}
+        content = self._make_request(path, data)
+        return content
