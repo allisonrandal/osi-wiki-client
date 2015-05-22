@@ -49,3 +49,23 @@ class Client:
         data = {}
         content = self._make_request(path, data)
         return content
+
+    def tags(self):
+        path = ['tags']
+        data = {}
+        content = self._make_request(path, data)
+        return content['tags']
+
+    def tag_names(self):
+        tags = []
+        result = self.tags()
+        for details in result:
+            tags.append(details['name'])
+        return tags
+
+    def pages_by_tags(self, tags):
+        taglist = ",".join(tags)
+        path = ['tags', taglist]
+        data = {}
+        content = self._make_request(path, data)
+        return content['pageSummaries']
