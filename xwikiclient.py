@@ -1,13 +1,13 @@
 import requests
 
 class Client:
-    def __init__(self, auth_user=None, auth_pass=None):
+    def __init__(self, api_root, auth_user=None, auth_pass=None):
+        self.api_root = api_root
         self.auth_user = auth_user
         self.auth_pass = auth_pass
 
     def _build_url(self, path):
-        base = 'http://wiki.opensource.org/rest/wikis/xwiki/'
-        url = base + "/".join(path)
+        url = self.api_root + "/".join(path)
         return url
 
     def _make_request(self, path, data):
